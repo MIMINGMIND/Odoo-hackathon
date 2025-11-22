@@ -11,6 +11,10 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+import UserRoutes from './routes/UserRoutes';
+app.use('/User', UserRoutes);
+
+
 
 // Routes (Add your routes here)
 // Example: app.use('/api', require('./routes/apiRoutes'));
