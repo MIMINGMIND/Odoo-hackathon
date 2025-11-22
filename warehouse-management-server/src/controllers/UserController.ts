@@ -2,13 +2,13 @@
 import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { ApiError } from '../utils/ApiError';
-import { JwtPayloadUser } from '../types/authtypes';
 import { UserModel } from '../models/UserModel';
 import { OtpTokenModel } from '../models/OTPToken';
+import { JwtPayloadUser } from '../types/authtypes';
+import { ApiError } from '../utils/ApiError';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret';
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
+const JWT_EXPIRES_IN: string = process.env.JWT_EXPIRES_IN || '7d';
 const OTP_EXP_MINUTES = Number(process.env.OTP_EXP_MINUTES || 10);
 
 // local async wrapper
@@ -18,7 +18,7 @@ const asyncHandler =
             fn(req, res, next).catch(next);
 
 function signToken(user: JwtPayloadUser) {
-    return jwt.sign(user, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+    return jwt.sign(user, JWT_SECRET, { expiresIn: "7d" });
 }
 
 // POST /auth/register

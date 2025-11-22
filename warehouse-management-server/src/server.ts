@@ -2,17 +2,17 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-// import connectDb from './config/dbConnection';
+import connectDb from './config/dbConnection';
 
 const app = express();
 
 // DB config
-// connectDb(); // Uncomment this after adding connection to DB
+connectDb(); // Uncomment this after adding connection to DB
 
 // Middleware
 app.use(express.json());
 import UserRoutes from './routes/UserRoutes';
-app.use('/User', UserRoutes);
+app.use('/user', UserRoutes);
 
 
 
